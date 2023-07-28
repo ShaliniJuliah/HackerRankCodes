@@ -2,7 +2,7 @@
 
 int main() {
     long long int n, i, j, sum = 0, a = 1;
-    long long int arr[5], ans[100], min, max;
+    long long int arr[5], ans[100], min, max; 
 
     // Input the values for the array arr.
     for (i = 1; i <= 5; i++) {
