@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h> 
+
+int main() {
+    int n, p, d, i, z;
+    float temp;
+
+    // Input n and p
+    scanf("%d %d", &n, &p);
+
+    // Calculate the midpoint of the sequence
+    temp = n / 2 + 0.5;
+
+    // Dynamically allocate memory for the arr array
+    int *arr = (int *)malloc((n + 1) * sizeof(int));
+    
+    // Handle cases where p is at the beginning or end of the sequence
+    if (p == 1 || p == n) {
+        printf("0");
+    } 
+    // Handle cases where p is in the first half of the sequence
+    else if (p <= temp) {
+        arr[0] = arr[1] = 0;
+        z = 1;
+        
+        // Fill the array with values for the first half
+        for (i = 2; i <= temp; i += 2) {
+            arr[i] = z;
+            arr[i + 1] = z;
+            z++;
+        }
+        printf("%d", arr[p]);
+    } 
+    // Handle cases where p is in the second half of the sequence
+    else {
+        // If n is odd
+        if (n % 2 != 0) {
+            arr[n] = arr[n - 1] = 0;
+            z = 1;
+            n = n - 2;
+
+            // Fill the array with values for the second half (odd n)
+            for (i = n; i >= temp; i -= 2) {
+                arr[i] = z;
+                arr[i - 1] = z;
+                z++;
+            }
+            printf("%d", arr[p]);
+        } 
+        // If n is even
+        else {
+            arr[n] = 0;
+            z = 1;
+            n = n - 1;
+
+            // Fill the array with values for the second half (even n)
+            for (i = n; i >= temp; i -= 2) {
+                arr[i] = z;
+                arr[i - 1] = z;
+                z++;
+            }
+            printf("%d", arr[p]);
+        }
+    }
+
+    // Free dynamically allocated memory
+    free(arr);
+
+    return 0;
+}
