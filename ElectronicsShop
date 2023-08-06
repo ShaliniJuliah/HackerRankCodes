@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int i, j, n, m, b;
+    int *kb, *usb;
+
+    // Input the budget, number of keyboard models, and number of USB drive models
+    scanf("%d %d %d", &b, &n, &m);
+
+    // Allocate memory for keyboard and USB arrays
+    kb = (int *)malloc(n * sizeof(int));
+    usb = (int *)malloc(m * sizeof(int));
+
+    // Input the keyboard prices
+    for (i = 0; i < n; i++) {
+        scanf("%d", &kb[i]);
+    }
+
+    // Input the USB drive prices
+    for (i = 0; i < m; i++) {
+        scanf("%d", &usb[i]);
+    }
+
+    // Bubble sort for keyboard prices
+    for (i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (kb[j] > kb[j + 1]) {
+                int temp = kb[j];
+                kb[j] = kb[j + 1];
+                kb[j + 1] = temp;
+            }
+        }
+    }
+
+    // Bubble sort for USB drive prices
+    for (i = 0; i < m - 1; i++) {
+        for (int j = 0; j < m - i - 1; j++) {
+            if (usb[j] > usb[j + 1]) {
+                int temp = usb[j];
+                usb[j] = usb[j + 1];
+                usb[j + 1] = temp;
+            }
+        }
+    }
+
+    int max_spent = -1;
+
+    // Find the maximum spent amount within the budget
+    for (i = 0, j = m - 1; i < n; i++) {
+        while (j >= 0 && kb[i] + usb[j] > b) {
+            j--;
+        }
+        if (j >= 0 && kb[i] + usb[j] > max_spent) {
+            max_spent = kb[i] + usb[j];
+        }
+    }
+
+    // Print the maximum spent amount
+    printf("%d", max_spent);
+
+    // Free allocated memory
+    free(kb);
+    free(usb);
+
+    return 0;
+}
