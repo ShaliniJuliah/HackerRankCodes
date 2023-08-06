@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, n, ar[100], count = 0;
+
+    // Input the value of n
+    scanf("%d", &n);
+
+    // Input the array elements
+    for (i = 0; i < n; i++) {
+        scanf("%d", &ar[i]);
+    }
+
+    // Compare each element with the remaining elements
+    for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (ar[i] == ar[j]) {
+                if (ar[i] == 0) {
+                    break;
+                } else {
+                    ++count;
+                    ar[j] = ar[i] = 0; // Mark matching elements as 0
+                    break;
+                }
+            }
+        }
+    }
+
+    // Print the count of duplicate pairs
+    printf("%d", count);
+
+    return 0;
+}
