@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int i, n, x, y, z, catA, catB, mouseC;
+
+    // Input the number of test cases
+    scanf("%d", &n);
+
+    // Allocate memory for the input array
+    int *arr = (int *)malloc(n * 3 * sizeof(int));
+
+    // Input the values for all test cases
+    for (i = 0; i < n * 3; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Iterate through each test case
+    for (i = 0; i < n * 3; i += 3) {
+        x = arr[i];
+        y = arr[i + 1];
+        z = arr[i + 2];
+        
+        // Calculate the distances for cat A and cat B
+        catA = abs(z - x);
+        catB = abs(z - y);
+
+        // Compare distances and print the result
+        if (catA < catB)
+            printf("Cat A\n");
+        else if (catA > catB)
+            printf("Cat B\n");
+        else
+            printf("Mouse C\n");
+    }
+
+    // Free allocated memory
+    free(arr);
+
+    return 0;
+}
