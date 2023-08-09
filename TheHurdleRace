@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, n, k, ht[100], max;
+
+    // Input the number of lanterns and the height threshold
+    scanf("%d %d", &n, &k);
+
+    // Input the heights of the lanterns
+    for (i = 0; i < n; i++) {
+        scanf("%d", &ht[i]);
+    }
+
+    max = ht[0];
+
+    // Find the maximum height among the lanterns
+    for (i = 0; i < n; i++) {
+        if (max < ht[i]) {
+            max = ht[i];
+        }
+    }
+
+    // Calculate and print the difference between the maximum height and the threshold
+    if (max > k) {
+        printf("%d", max - k);
+    } else {
+        printf("0");
+    }
+}
