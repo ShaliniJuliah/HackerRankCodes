@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    int p[50], py[50], y[50], i, n, x, j = 1, z = 1;
+
+    // Input the number of elements
+    scanf("%d", &n);
+
+    // Input the elements of array p
+    for (i = 1; i <= n; i++) {
+        scanf("%d", &p[i]);
+    }
+
+    // Find the indices of each element in p and store in py
+    for (x = 1; x <= n; x++) {
+        for (i = 1; i <= n; i++) {
+            if (p[i] == x) {
+                py[j] = i;
+                j++;
+            }
+        }
+    }
+
+    // Find the corresponding indices in p and store in y
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++) {
+            if (py[i] == p[j]) {
+                y[z] = j;
+                z++;
+            }
+        }
+    }
+
+    // Print the indices in y
+    for (i = 1; i <= n; i++) {
+        printf("%d\n", y[i]);
+    }
+
+    return 0;
+}
